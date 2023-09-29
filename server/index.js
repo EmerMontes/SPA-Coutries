@@ -5,8 +5,9 @@ const countries = require('./src/controllers/countries')
 const PORT = 3001;
 
 
-conn.sync({ force: false }).then(() => {
-  countries,
+conn.sync({ force: true }).then(() => {
+  countries(),
+  console.log(countries)
   server.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 })
