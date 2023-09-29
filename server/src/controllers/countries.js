@@ -1,6 +1,7 @@
 const {Country}=require('../db')
 const {countries} = require('../../api/db')
 
+
 module.exports = async(req,res)=>{
     
     try {
@@ -16,9 +17,8 @@ module.exports = async(req,res)=>{
              population: String(country.population),
          }));
         await Country.bulkCreate(country)
-        res.status(200).send('Countries save')
-        
+        console.log('Countries saved')
     } catch (error) {
-        res.status(500).send(error.message)
+        console.log('Error')        
     }
 }

@@ -3,8 +3,7 @@ const { Sequelize } = require("sequelize");
 
 const fs = require('fs');
 const path = require('path');
-const Activity = require("./models/Activities");
-const Countries = require("./models/Country")
+
 const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
