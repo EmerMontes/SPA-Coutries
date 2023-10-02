@@ -11,6 +11,7 @@ module.exports = (sequelize) => {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
+        
     },
     difficulty: {
         type: DataTypes.INTEGER,
@@ -30,5 +31,5 @@ module.exports = (sequelize) => {
     }
 
     
-    });
+    }, { timestamps: false });
 };
