@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import style from './Landing.module.css'
 
 export const Landing = ()=>{
   const navigate = useNavigate()
@@ -6,7 +7,7 @@ export const Landing = ()=>{
         <>
       <div>
         <a href="/home" >
-          <img src='./imagenes/world.gif' className="logo react" alt="Country logo" />
+          <img src='./imagenes/world.gif' className={style.logo} alt="Country logo" />
         </a>
       </div>
       <h1>Welcome</h1>
@@ -17,11 +18,6 @@ export const Landing = ()=>{
         <button onClick={() => (navigate('/home'))}>
           Login
         </button>
-      </div>
-      <div className="card">
-        <a href='https://www.linkedin.com/in/emerson-montes-422037262/' target='_blank'>
-        <img  src='./imagenes/linkedin.gif' className="logo react" alt="linkedin logo" />
-        </a>
       </div>
 
     </>

@@ -1,4 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
+import { countrySlice } from './countrySlice';
+
 
 //import {  applyMiddleware, compose } from 'redux';
 //import thunkMiddleware from 'redux-thunk'
@@ -11,7 +13,7 @@ import {configureStore} from '@reduxjs/toolkit'
 
 const store = configureStore({
     reducer:{
-        
+       country: countrySlice.reducer
     }
 });
 
