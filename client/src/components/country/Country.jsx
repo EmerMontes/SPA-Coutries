@@ -3,8 +3,10 @@ import style from './country.module.css'
 
 export const Country =()=>{
     const {country} = useSelector((state)=>state.country)
+    
     return (
         <div className={style.contentCountry}>
+        
         {
             country.map(countries=>{
                 return(

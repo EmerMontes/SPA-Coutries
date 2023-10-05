@@ -8,7 +8,7 @@ export const Head = ()=>{
 
         </div>
         <div className={style.boton}>
-            <button>☾</button>
+            <button>🌙</button>
         </div>
     
     </div>

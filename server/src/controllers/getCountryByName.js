@@ -3,6 +3,7 @@ const { Op } = require('sequelize');
 
 
 module.exports = async(req,res)=>{
+    console.log('por nombre')
     try {
         const name = req.query.name
         const names = await Country.findAll({where:{name:{
@@ -10,7 +11,7 @@ module.exports = async(req,res)=>{
         }}})
         names.length !== 0
         ? res.status(200).json(names) 
-        : res.status(402).send('City name not found') 
+        : res.status(200).send([]) 
     } catch (error) {
         return res.status(500).send(error.message)
     }
