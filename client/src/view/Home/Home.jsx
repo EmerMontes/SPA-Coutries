@@ -25,7 +25,7 @@ export const Home =()=>{
      <div>
     {page !==1 && <button onClick={()=>dispatch(getCountry(page-1))}>{'<'}</button>}
     <button disabled={true}>{page}</button>
-    {page !==25 ? <button disabled={country.length<10} onClick={()=>dispatch(getCountry(page+1))}>{'>'}</button>
+    {page !==25 ? <button disabled={country.length<10 || country.length>10} onClick={()=>dispatch(getCountry(page+1))}>{'>'}</button>
     :<button onClick={()=>dispatch(reloadPage())}>1</button>} 
     </div>
     

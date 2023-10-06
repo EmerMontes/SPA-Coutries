@@ -5,7 +5,8 @@ export const countrySlice = createSlice({
     initialState:{
         page:0,
         country:[],
-        input:''
+        input:'',
+        error:'',
     },
     reducers:{
         setCountry:(state,action)=>{
@@ -22,9 +23,12 @@ export const countrySlice = createSlice({
         },
         reloadInpu :(state,action)=>{
             state.input = action.payload.input
+        },
+        setError :(state,action)=>{
+            state.error = action.payload.error
         }
     }
     
 
 })
-export const { setCountry,reloadPage, setCountryByName,reloadInpu } = countrySlice.actions
+export const { setCountry,reloadPage, setCountryByName,reloadInpu, setError } = countrySlice.actions
