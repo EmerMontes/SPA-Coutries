@@ -12,8 +12,8 @@ module.exports = async(req,res) =>{
                  name: country.name.common,
                  imgFlag: country.flags.svg,
                  continent: country.continents[0],
-                 capital: country.capital ? (country.capital[0]) : country.name.common, 
-                 subregion: country.subregion ? country.subregion : country.region ,
+                 capital: country.capital ? (country.capital[0]) : 'NotFound', 
+                 subregion: country.subregion ? country.subregion : 'NotFound' ,
                  area: String(country.area), 
                  population: String(country.population),
              }));

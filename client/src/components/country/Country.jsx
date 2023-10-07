@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 export const Country =()=>{
     const {country} = useSelector((state)=>state.country)
-    
     return (
         <div className={style.contentCountry}>
            {country.map(countries=>{

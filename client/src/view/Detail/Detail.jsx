@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom"
 import { useEffect,useState } from "react"
 import axios from 'axios'
 import style from './detail.module.css'
+import { Back } from "../../components/backBottom/Back"
 
 
 export const Detail =  ()=>{
@@ -27,10 +28,9 @@ export const Detail =  ()=>{
          return setCountry({})
     },[ID])
 
-
 return(
     <div className={style.contentDetail}>
-
+        <Back />
         <div className={style.detailCountry}>
         <p>
         <b>ID:  </b>
@@ -93,12 +93,5 @@ return(
              </div>
             }
             </div>
-
-            
-        
-
-
     </div>
-)
-
-}
+)}

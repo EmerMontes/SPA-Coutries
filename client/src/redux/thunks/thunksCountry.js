@@ -20,7 +20,7 @@ export const getCountryByName=(value, page=0)=>{
         } catch (error) {
             console.log('error getCountryByName')
             dispatch( setCountryByName({country: [], page: page}))
-            dispatch(getError(error))
+            dispatch(getError('error'))
         }
 
     }

@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom'
+import style from './back.module.css'
 
 export const Back =()=>{
 
   return (
-    <div>
-       <Link to={'/home'}>
+    <div className={style.back}>
+       <Link className={style.aref} to={'/home'}>
         <button>
-            Back
+             ⬅️
         </button>
        </Link>
 

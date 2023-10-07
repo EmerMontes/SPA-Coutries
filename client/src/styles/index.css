@@ -43,7 +43,13 @@ h1 {
   font-size: 3.2em;
   line-height: 1.1;
 }
-
+input{
+  border-radius: 10px;
+  box-shadow: 6px 3px 5px rgb(15, 15, 15, .5);
+  font-style: oblique;
+  font-weight: 500;
+  padding: 3px;
+}
 button {
   border-radius: 8px;
   border: 1px solid;
@@ -54,6 +60,11 @@ button {
   background-color: #ffffff;
   cursor: pointer;
   transition: border-color 0.25s;
+}
+button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 button:hover {
   border-color: #646cff;

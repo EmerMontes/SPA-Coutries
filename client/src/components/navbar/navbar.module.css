@@ -7,3 +7,9 @@ margin-top: 2vh;
     height: 60vh;
     border: 1px solid;
 }
+.contentNav{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    padding: 10px;
+}

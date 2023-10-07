@@ -28,6 +28,7 @@
     align-items: flex-start;
     justify-content: space-evenly;
     line-height: 1;
+    margin-bottom: 120px;
 }
 .detail  p{
     line-height: 1;
