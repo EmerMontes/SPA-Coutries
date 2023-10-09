@@ -34,6 +34,7 @@ export const getCountry =(page=1)=>{
             dispatch( setCountry({country: data,page: page}))
         } catch (error) {
             console.log('error')
+            
         }
 
     }
@@ -50,17 +51,17 @@ export const reloadPage=(page=1)=>{
 
     }
 }
- export const reloadInput=(value)=>{
+export const reloadInput=(value)=>{
     
     return async (dispatch, reloadInput)=>{
          dispatch( reloadInpu({input: value}))
         
      }
- }
-  export const getError=(value)=>{
+}
+export const getError=(value)=>{
     
     return async (dispatch, getError)=>{
          dispatch( setError({error: value}))
         
      }
- }
+}

@@ -5,6 +5,7 @@ import {Detail} from './view/Detail/Detail'
 import { Head } from './components/head/Head'
 import { Footer } from './components/footer/Footer'
 import './styles/index.css'
+import { ActivityCreate } from './view/createActivity/ActivityCreate'
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
     <Route path='/' element={<Landing/>}/>
     <Route path='/home' element={<Home/>}/>
     <Route path='/detail/:ID' element={<Detail/>}/>
+    <Route path='/createActivity' element={<ActivityCreate/>}/>
 
    </Routes>
    <Footer/>

@@ -4,6 +4,7 @@ import { reloadPage } from '../../redux/thunks/thunksCountry'
 import { reloadInput } from '../../redux/thunks/thunksCountry'
 
 import style from './navbar.module.css'
+import { Link } from 'react-router-dom'
 
 
 export const NavBar = ()=>{
@@ -22,6 +23,11 @@ export const NavBar = ()=>{
        }else{
         return dispatch(reloadPage())
        }
+    }
+    const createActivity=(event)=>{
+        if (event.target.value === 'createActivity') {
+            <Link to={'/createActivity'}/>
+        }
     }
     
   return (
@@ -60,12 +66,14 @@ export const NavBar = ()=>{
                 <option value="menoramayor">10-1</option>
                 </optgroup>
             </select>
-
-            <select name="createActivity" defaultValue="">
-                <option value=""disabled>Activity</option>
-                <option value="createActivity">Create Activity</option>
+{/* 
+            <select name="createActivities" defaultValue="" onChange={createActivity}>
+                <option value=""disabled>Activity</option> */}
+                {/* <option value="createActivity"> */}
+                    <Link to={'/createActivity'}><button>Create Activity</button></Link>
+                    {/* </option>
                 <option value="viewActivity">View All Activity</option>
-            </select>
+            </select> */}
 
 
         </div>

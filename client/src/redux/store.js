@@ -1,5 +1,6 @@
 import {configureStore} from '@reduxjs/toolkit'
 import { countrySlice } from './countrySlice';
+import { allCountrySlice } from './allCountrySlice';
 
 
 //import {  applyMiddleware, compose } from 'redux';
@@ -13,8 +14,10 @@ import { countrySlice } from './countrySlice';
 
 const store = configureStore({
     reducer:{
-       country: countrySlice.reducer
+       country: countrySlice.reducer,
+       allCountry: allCountrySlice.reducer
     }
+    
 });
 
 

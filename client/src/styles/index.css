@@ -49,8 +49,10 @@ input{
   font-style: oblique;
   font-weight: 500;
   padding: 3px;
+  max-height: 30px;
 }
 button {
+  margin: 2px;
   border-radius: 8px;
   border: 1px solid;
   padding: 0.6em 1em;

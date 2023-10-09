@@ -1,9 +1,11 @@
 import { useEffect, useState, lazy, Suspense } from "react"
 import {useDispatch, useSelector} from 'react-redux'
 import { getCountry, reloadPage } from "../../redux/thunks/thunksCountry"
+
 import {Country} from '../../components/country/Country'
 import { NavBar } from "../../components/navbar/Navbar"
 import style from './home.module.css'
+//
 
 //const Notfound =  lazy(()=>import('./NotFound'))
 
@@ -13,10 +15,11 @@ export const Home =()=>{
 
  useEffect(()=>{
    dispatch(getCountry())
-   
   },[])
   
-  const {country,page, error} = useSelector((state)=>state.country)
+  const {country,page, error, allCountries} = useSelector((state)=>state.country)
+  console.log(allCountries)
+
   const [isLoad,setIsLoad]= useState(true)
 
   useEffect(() => {

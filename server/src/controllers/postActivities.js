@@ -3,7 +3,7 @@ const {Activities, Country} = require('../db')
 module.exports = async(req,res)=>{
 try {
     const idCountry = req.body.idCountry
-    let country = await Country.findAll({ where: {ID: idCountry}});
+    let country = await Country.findAll({ where: {name: idCountry}});
     
 
 
@@ -13,6 +13,7 @@ try {
     }
     
     const activity =  await Activities.create({name,difficulty, duration, season})
+
     await activity.addCountry(country);
     return res.status(200).send(activity)
    

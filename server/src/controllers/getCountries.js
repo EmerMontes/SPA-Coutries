@@ -9,10 +9,11 @@ module.exports = async(req,res)=>{
         const countrys = await Country.findAll({
             limit,
             offset,
-        });
+        })
          countrys.length !==0 ? res.status(200).json(countrys)
-         :  res.status(200).json(countrys.slice(-10));
-
+         :  res.status(404).send('error')
+         //res.status(400).json(countrys.slice(-10));
+         
     } catch (error) {
         return res.status(500).send(error.message)
     }
