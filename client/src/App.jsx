@@ -1,11 +1,12 @@
-import { Route, Routes } from 'react-router-dom'
-import  {Landing}  from './view/Landing/Landing'
-import {Home} from './view/Home/Home'
-import {Detail} from './view/Detail/Detail'
-import { Head } from './components/head/Head'
-import { Footer } from './components/footer/Footer'
-import './styles/index.css'
 import { ActivityCreate } from './view/createActivity/ActivityCreate'
+import { AllActivity } from './view/allActivity/AllActivity'
+import { Footer } from './components/footer/Footer'
+import  {Landing}  from './view/Landing/Landing'
+import { Route, Routes } from 'react-router-dom'
+import { Head } from './components/head/Head'
+import {Detail} from './view/Detail/Detail'
+import {Home} from './view/Home/Home'
+import './styles/index.css'
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     <Route path='/home' element={<Home/>}/>
     <Route path='/detail/:ID' element={<Detail/>}/>
     <Route path='/createActivity' element={<ActivityCreate/>}/>
+    <Route path='/allActivity' element={<AllActivity/>}/>
 
    </Routes>
    <Footer/>

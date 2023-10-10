@@ -12,7 +12,6 @@ try {
         duration,
         season
       };
-  
 
       activity
       ? ( await activity.update(data),

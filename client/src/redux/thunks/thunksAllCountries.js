@@ -3,7 +3,6 @@ import axios from 'axios'
 
 
 export const getAllCountry =(page)=>{
- 
     return async (dispatch, getAllCountry)=>{
         try {
             const {data}= await axios.get(`http://localhost:3001/allCountries`)
@@ -15,3 +14,4 @@ export const getAllCountry =(page)=>{
 
     }
 }
+

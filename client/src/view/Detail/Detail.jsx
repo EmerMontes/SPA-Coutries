@@ -13,7 +13,6 @@ export const Detail =  ()=>{
     useEffect ( ()=> {
       try{
           axios(`http://localhost:3001/countries/${ID}`).then(({data})=>{
-              console.log(data)
             if (data.city) {
                 setCountry(data.city)
             }
@@ -24,7 +23,6 @@ export const Detail =  ()=>{
         }catch(error){
             alert('id Not found')
         }
-        console.log(country)
          return setCountry({})
     },[ID])
 

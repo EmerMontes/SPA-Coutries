@@ -1,7 +1,7 @@
 import { getAllCountry } from "../../redux/thunks/thunksAllCountries"
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {Back} from '../../components/backBottom/Back'
-import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import {validate} from'./validateActivity'
 import style from './create.module.css'
@@ -12,60 +12,103 @@ import axios from 'axios'
 
 export const ActivityCreate =()=>{
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(()=>{
         dispatch(getAllCountry())
     },[])
     
-    const navigate = useNavigate()
-    const [errores, setErrores]= useState({})
-    const {allCountries} = useSelector((state)=>state.country)
-    const [actividad,setActividad]= useState({
-        name: '',
-        difficulty: '',
-        duration: '',
-        season: ''
-    })
 
+    const {allCountries} = useSelector((state)=>state.country)
     const [idCountry, setIdCountry] = useState([])
+    const [errores, setErrores]= useState({})
+    const [actividad,setActividad]= useState({
+      name: '',
+      difficulty: '',
+      duration:  '' ,
+      season:  '' 
+    })
+    
+    
+    const location = useLocation()
+    const {activity, city} = location.state?.data || {};
+    console.log(city)
+    
+    const [isEditing, setIsEditing] = useState(false);
+    
+    const ediActivity=()=>{
+      setActividad({
+          name: activity.name,
+          difficulty: activity.difficulty,
+          season: activity.season,
+          duration: activity.duration
+        })  
+        const country = city.map((country)=>{
+          return (
+
+            country.name
+          )
+        })
+        setIdCountry(country)
+      }
+    useEffect(() => {
+      // Si hay datos en location.state, significa que estamos editando
+      setIsEditing(!!location.state?.data);
+    }, [location.state]);
+    
+    useEffect(() => {
+      if (isEditing) {
+        ediActivity();
+      }
+    }, [isEditing]);
+      
+
+
+
+
 
     const  handleNameInput = (event)=>{
        const {name, value} = event.target
        setActividad({...actividad, [name]:value})      
        setErrores(validate({...actividad, [name]:value}))
-    }
-
-    const handleCountries = (event)=>{
+      }
+      
+      const handleCountries = (event)=>{
         if(idCountry.includes(event.target.value)) {
           setIdCountry(idCountry.filter((city) => city !== event.target.value));
         }else{
           setIdCountry([...idCountry, event.target.value]);
         }
-    } 
-    const handleClick=()=>{
+      } 
+      const handleClick=()=>{
         setActividad({...actividad,idCountry : idCountry})
-    }
+      }
+      
+      const handleSubmitActivity = async (event)=>{
 
-    const handleSubmitActivity = async (event)=>{
         event.preventDefault()
+
         try {
-             await axios.post('http://localhost:3001/activities',actividad)
-             console.log('cumplido')   
+          if (isEditing) {
+             await axios.put(`http://localhost:3001/activities/${activity.ID}`,actividad)
+          }else{
+            await axios.post('http://localhost:3001/activities',actividad)
+          }
+          console.log('cumplido')   
         }catch(error) {
             alert('no se puede crear la actividad')
         }
-        const result = window.confirm('activity created, do you want to create a new activity?')
-        if(result){
-          setActividad({name: '',duration: '',difficulty: '',season: ''})
-          setIdCountry([])
-          document.querySelectorAll('input[type="radio"]').forEach((radio) => {
-            radio.checked = false;
-          });
-        }else{
-          navigate('/home') 
-        }
-    } 
-
+          const result = window.confirm('activity created or edit, do you want to create a new activity?')
+          if(result){
+            setActividad({name: '',duration: '',difficulty: '',season: ''})
+            setIdCountry([])
+            document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+              radio.checked = false;
+            });
+          }else{
+            navigate('/home') 
+          }
+        } 
   return (
         <div className={style.contentActividad}>
             <Back/>
@@ -116,20 +159,20 @@ export const ActivityCreate =()=>{
          {errores.season && <span style={{color: 'red'}}>{errores.season}</span>}
          <div className={style.genderOption}>
          <div className={style.gender}>
-            <input onChange={handleNameInput}  value='Summer' name="season" type="radio"/>
+            <input onChange={handleNameInput}  value='Summer'checked={actividad.season==='Summer'}  name="season" type="radio"/>
             <label>Summer</label>
           </div>
           
           <div className={style.gender}>
-            <input onChange={handleNameInput}   value='Autumn' name="season"  type="radio"/>
+            <input onChange={handleNameInput}   value='Autumn'checked={actividad.season==='Autumn'} name="season"  type="radio"/>
             <label>Autumn</label>
           </div>
           <div className={style.gender}>
-            <input onChange={handleNameInput}  value='Spring'  name="season"  type="radio"/>
+            <input onChange={handleNameInput}  value='Spring' checked={actividad.season==='Spring'} name="season"  type="radio"/>
             <label>Spring</label>
           </div>
           <div className={style.gender}>
-            <input onChange={handleNameInput}  value='Winter' name='season'  type="radio"/>
+            <input onChange={handleNameInput}  value='Winter' checked={actividad.season==='Winter'}  name='season'  type="radio"/>
             <label>Winter</label>
           </div>
 
@@ -157,16 +200,12 @@ export const ActivityCreate =()=>{
         actividad.difficulty.length === 0 ||
         actividad.duration.length === 0 ||
         actividad.season.length === 0 ||
-        idCountry.length === 0} onClick={()=>handleClick()}>Create</button>
+        idCountry.length === 0} onClick={()=>handleClick()}>{isEditing ? 'Edit' : 'Create'}</button>
        </form>
       </section>
       <div className={style.botonAll}>
-      <button className={style.all}>All activities</button>
-      </div>
+        <Link to={'/allActivity'}><button className={style.all}>All activities</button></Link>
+       </div>
         </div>
     )
-   
-  
-
-
 }

@@ -1,33 +1,23 @@
-import {useDispatch, useSelector} from 'react-redux'
-import { getCountryByName } from '../../redux/thunks/thunksCountry'
-import { reloadPage } from '../../redux/thunks/thunksCountry'
+import { getCountry, getCountryByName } from '../../redux/thunks/thunksCountry'
+//import { reloadPage } from '../../redux/thunks/thunksCountry'
 import { reloadInput } from '../../redux/thunks/thunksCountry'
-
+import {useDispatch, useSelector} from 'react-redux'
 import style from './navbar.module.css'
 import { Link } from 'react-router-dom'
 
 
 export const NavBar = ()=>{
-   const dispatch = useDispatch()
-   const {country} = useSelector((state)=>state.country)
-   console.log(country)
-   const {input,error } = useSelector((state)=>state.country)
-   console.log(error)
-   
-
+   const dispatch = useDispatch() 
+   const {input} = useSelector((state)=>state.country)
+  
     const handleInput =(event)=>{
        const value = event.target.value
        dispatch(reloadInput(value))
        if(value.length!==0){
        dispatch(getCountryByName(value))
        }else{
-        return dispatch(reloadPage())
+        return dispatch(getCountry())
        }
-    }
-    const createActivity=(event)=>{
-        if (event.target.value === 'createActivity') {
-            <Link to={'/createActivity'}/>
-        }
     }
     
   return (
@@ -65,17 +55,8 @@ export const NavBar = ()=>{
                 <option value="mayoramenor">1-10</option>
                 <option value="menoramayor">10-1</option>
                 </optgroup>
-            </select>
-{/* 
-            <select name="createActivities" defaultValue="" onChange={createActivity}>
-                <option value=""disabled>Activity</option> */}
-                {/* <option value="createActivity"> */}
-                    <Link to={'/createActivity'}><button>Create Activity</button></Link>
-                    {/* </option>
-                <option value="viewActivity">View All Activity</option>
-            </select> */}
-
-
+             </select>
+             <Link to={'/createActivity'}><button>Create Activity</button></Link>
         </div>
 
 
